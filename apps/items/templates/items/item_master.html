@@ -1,0 +1,39 @@
+{% extends 'items/base.html' %}
+
+{% block content %}
+
+    <h1>商品マスタ管理</h1>
+    <a href="{% url 'home:home' %}">トップ</a>
+    ＞商品マスタ管理
+
+    <div class="item-master">
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>名称</th>
+            <th>単価</th>
+            <th>登録日時</th>
+            <th>更新日時</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.created_at}}</td>
+            <td>{{item.update_at}}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        {% endfor %}
+        
+</table>
+    
+    </div>
+
+
+    {% comment %} <a href="{% url 'items:new' %}">新規追加</a> {% endcomment %}
+    
+{% endblock %}

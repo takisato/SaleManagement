@@ -1,0 +1,28 @@
+[{
+        "model": "items.Item",
+        "pk": 1,
+        "fields": {
+            "name": "りんご",
+            "price": 100,
+            "created_at": ""
+        }
+    },
+    {
+        "model": "items.Item",
+        "pk": 2,
+        "fields": {
+            "name": "みかん",
+            "price": 150,
+            "created_at": ""
+        }
+    },
+    {
+        "model": "items.Item",
+        "pk": 3,
+        "fields": {
+            "name": "にんじん",
+            "price": 50,
+            "created_at": ""
+        }
+    }
+]

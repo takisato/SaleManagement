@@ -9,7 +9,6 @@ def item_master(request):
     return render(request, 'items/item_master.html', {'items': items})
 
 
-
 def item_master_new(request):
     if request.method == "POST":
         form = ItemForm(request.POST)
@@ -21,6 +20,18 @@ def item_master_new(request):
     else:
         form = ItemForm()
     return render(request, 'items/item_master_new.html', {'form': form})
+
+
+def item_master_edit(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    if request.method == "PODT":
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('items:item_master')
+    else:
+        form = ItemForm(instance=item)
+    return render(request, 'items/item_master_edit.html', {'form': form, 'item': item})
 
 
 @require_POST

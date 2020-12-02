@@ -1,0 +1,12 @@
+asgiref @ file:///tmp/build/80754af9/asgiref_1605055780383/work
+autopep8==1.5.4
+certifi==2020.11.8
+Django==3.0.3
+flake8==3.8.4
+mccabe==0.6.1
+pycodestyle==2.6.0
+pyflakes==2.2.0
+pytz==2020.1
+sqlparse @ file:///tmp/build/80754af9/sqlparse_1602184451250/work
+toml==0.10.2
+wincertstore==0.2

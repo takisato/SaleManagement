@@ -1,0 +1,14 @@
+{% extends 'items/base.heml' %}
+
+{% block  content %}
+
+<h1>記事編集</h1>
+
+<div>
+    <form action="{% url 'items:item_master_edit' item.id %}" method="POST">{% csrf_token %} 
+        {{ form.as_p }}
+        <button class="btn" type="submit">保存</button>
+    </form>
+</div>
+
+{% endblock  %}

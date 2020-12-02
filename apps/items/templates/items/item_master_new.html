@@ -1,0 +1,20 @@
+{% extends 'items/base.html' %}
+
+{% block content %}
+
+<form action="{% url 'items:item_master_new' %}" method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <th>商品名</th>
+            <td>{{ form.name }}</td>
+        </tr>
+        <tr>
+            <th>単価</th>
+            <td>{{ form.price }}</td>
+        </tr>
+        
+    </table>
+    <button type="submit" class="btn">登録</button>
+</form>
+
+{% endblock %}

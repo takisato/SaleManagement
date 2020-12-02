@@ -1,12 +1,16 @@
-{% extends 'items/base.heml' %}
+{% extends 'items/base.html' %}
 
 {% block  content %}
 
-<h1>記事編集</h1>
+<h1>商品マスタ管理</h1>
+    <a href="{% url 'home:home' %}">トップ</a>
+    ＞<a href="{% url 'items:item_master' %}">商品マスタ管理</a>
+    ＞商品登録
 
 <div>
     <form action="{% url 'items:item_master_edit' item.id %}" method="POST">{% csrf_token %} 
-        {{ form.as_p }}
+        名称：{{ form.name }}<br>
+        単価：{{ form.price }}<br>
         <button class="btn" type="submit">保存</button>
     </form>
 </div>

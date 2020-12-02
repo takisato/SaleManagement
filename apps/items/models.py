@@ -10,3 +10,7 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def get_all_objets(cls, order_field='-id'):
+        return cls.objects.all().order_by(order_field)

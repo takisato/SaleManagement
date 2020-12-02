@@ -5,7 +5,7 @@ from .forms import ItemForm
 
 
 def item_master(request):
-    items = Item.objects.all().order_by('-id')
+    items = Item.get_all_objets('-updated_at')
     return render(request, 'items/item_master.html', {'items': items})
 
 
@@ -24,7 +24,7 @@ def item_master_new(request):
 
 def item_master_edit(request, item_id):
     item = get_object_or_404(Item, id=item_id)
-    if request.method == "PODT":
+    if request.method == "POST":
         form = ItemForm(request.POST, instance=item)
         if form.is_valid():
             form.save()

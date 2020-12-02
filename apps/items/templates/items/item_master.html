@@ -25,7 +25,11 @@
             <td>{{item.created_at}}</td>
             <td>{{item.update_at}}</td>
             {% comment %} <td><button><a href="{% url 'items:item_master_new' %}">編集</a></button></td> {% endcomment %}
-            {% comment %} <td><button><a href="{% url 'items:item_master_delete' %}">削除</a></button></td> {% endcomment %}
+            <td>
+            <form method = "post" action="{% url 'items:item_master_delete' item_id=item.id%}">{% csrf_token %}
+            <button type="submit" onclick='return confirm("本当に削除しますか")'>削除</button>
+            </form>
+            </td>
         </tr>
         {% endfor %}
         

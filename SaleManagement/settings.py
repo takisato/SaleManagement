@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.users',
     'apps.home',
     'apps.items',
+    'apps.sales',
 ]
 
 AUTH_USER_MODEL = 'users.User'

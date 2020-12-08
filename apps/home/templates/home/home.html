@@ -1,7 +1,18 @@
-{% extends 'home/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
+<div class="header-menu">
+    {% if request.user.is_authenticated %}
+    <button>
+    <a href="{% url 'users:logout' %}">ログアウト</a>
+    </button>
+    {% else %}
+    <button>
+    <a href="{% url 'users:login' %}">ログイン</a>
+    </button>
+    {% endif %}
+</div>
     管理TOP
 
     <a href="{% url 'items:item_master' %}">master</a>

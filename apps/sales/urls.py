@@ -4,5 +4,8 @@ from . import views
 app_name = "sales"
 
 urlpatterns = [
-    path('sales_master/',views.master,name="master"),
+    path('master/', views.master, name="master"),
+    path('master/new/', views.master_new, name="master_new"),
+    path('master/int:<sale_id>/edit/', views.master_edit, name="master_edit"),
+    path('master/int:<sale_id>/delete/', views.master_delete, name="master_delete"),
 ]

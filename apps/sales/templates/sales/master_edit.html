@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+
+{% block  content %}
+
+<h1>販売情報管理</h1>
+<a href="{% url 'home:home' %}">トップ</a>
+＞<a href="{% url 'sales:master' %}">販売情報管理</a>
+＞販売情報編集
+
+<div>
+    <form action="{% url 'sales:master_edit' sale.id %}" method="POST">{% csrf_token %} 
+        商品名：{{ form.item }}<br>
+        個数：{{ form.num }}<br>
+        <button class="btn" type="submit">保存</button>
+    </form>
+</div>
+
+{% endblock  %}

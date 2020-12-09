@@ -3,5 +3,36 @@
 {% block content %}
 
 <h1>販売情報管理</h1>
+<a href="{% url 'home:home' %}">トップ</a>
+＞販売情報管理
+
+<div class="sales-master">
+    <table border="1">
+        <tr>
+            <th>商品</th>
+            <th>個数</th>
+            <th>売上</th>
+            <th>販売日時</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for sale in sales %}
+        <tr>
+            <td>{{sale.item}}</td>
+            <td>{{sale.num}}</td>
+            <td>{{sale.profit}}円</td>
+            <td>{{sale.created_at}}</td>
+            <td><button><a href="{% url 'sales:master_edit' sale_id=sale.id%}">編集</a></button></td>
+            <td>
+            <form method = "post" action="{% url 'sales:master_delete' sale_id=sale.id%}">{% csrf_token %}
+                <button type="submit" onclick='return confirm("本当に削除しますか")'>削除</button>
+            </form>
+            </td>
+        </tr>
+        {% endfor %}        
+    </table>
+
+    <button><a href="{% url 'sales:master_new' %}">新規登録</a></button>
+</div>
 
 {% endblock  %}

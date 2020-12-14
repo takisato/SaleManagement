@@ -7,7 +7,7 @@
 ＞販売情報管理
 
 <div class="sales-master">
-    <table border="1">
+    <table class="master_table">
         <tr>
             <th>商品</th>
             <th>個数</th>
@@ -32,7 +32,15 @@
         {% endfor %}        
     </table>
 
-    <button><a href="{% url 'sales:master_new' %}">新規登録</a></button>
+    <button><a href="{% url 'sales:master_new' %}">販売情報登録</a></button>
 </div>
+
+<form method = "post" action="{% url 'sales:master_new_by_file'%}" enctype="multipart/form-data">{% csrf_token %}
+    <input type="file" data-dafault-file="ファイルを選択してください" name="csv">
+    <button type="submit">アップロード</button> 
+</form>
+{% for message in messages %}
+ <p class="message-success">{{ message }}</p>
+{% endfor %}
 
 {% endblock  %}

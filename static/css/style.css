@@ -6,3 +6,14 @@ header h1 {
 a {
     text-decoration: none;
 }
+
+.master_table {
+    border-collapse: collapse;
+}
+
+.master_table th,
+.master_table td {
+    border: solid 1px;
+    margin: 10px;
+    padding: 10px;
+}

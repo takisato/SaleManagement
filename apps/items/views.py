@@ -5,7 +5,7 @@ from .forms import ItemForm
 
 
 def item_master(request):
-    items = Item.get_all_objets('-updated_at')
+    items = Item.get_all_objects('-updated_at')
     return render(request, 'items/item_master.html', {'items': items})
 
 

@@ -12,5 +12,10 @@ class Item(models.Model):
         return self.name
 
     @classmethod
-    def get_all_objets(cls, order_field='-id'):
+    def get_all_objects(cls, order_field='-id'):
         return cls.objects.all().order_by(order_field)
+
+    @classmethod
+    def get_objects(cls, item):
+        return cls.objects.get(name=item)
+

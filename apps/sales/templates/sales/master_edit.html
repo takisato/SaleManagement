@@ -10,8 +10,24 @@
 
 <div>
     <form action="{% url 'sales:master_edit' sale.id %}" method="POST">{% csrf_token %} 
-        商品名：{{ form.item }}<br>
-        個数：{{ form.num }}<br>
+        <table>
+        <tr>
+            <th>商品名</th>
+            <td>{{ form.item }}</td>
+        </tr>
+        <tr>
+            <th>個数</th>
+            <td>{{ form.num }}</td>
+        </tr>
+        <tr>
+            <th>売上</th>
+            <td>{{ form.profit }}</td>
+        </tr>
+        <tr>
+            <th>日時</th>
+            <td>{{ form.created_at }}</td>
+        </tr>
+    </table>
         <button class="btn" type="submit">保存</button>
     </form>
 </div>

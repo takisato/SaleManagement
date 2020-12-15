@@ -13,7 +13,7 @@ def item_master_new(request):
     if request.method == "POST":
         form = ItemForm(request.POST)
         if form.is_valid():
-            item = form.save()
+            form.save()
 
         return redirect('items:item_master')
 

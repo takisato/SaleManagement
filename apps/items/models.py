@@ -3,7 +3,7 @@ from django.db import models
 
 class Item(models.Model):
     '''商品'''
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     price = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -18,4 +18,3 @@ class Item(models.Model):
     @classmethod
     def get_objects(cls, item):
         return cls.objects.get(name=item)
-

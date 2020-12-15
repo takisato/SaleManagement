@@ -34,7 +34,7 @@
 
     <button><a href="{% url 'sales:master_new' %}">販売情報登録</a></button>
 </div>
-
+<h2>SCV一括登録</h2>
 <form method = "post" action="{% url 'sales:master_new_by_file'%}" enctype="multipart/form-data">{% csrf_token %}
     <input type="file" data-dafault-file="ファイルを選択してください" name="csv">
     <button type="submit">アップロード</button> 

@@ -5,6 +5,9 @@ from django.views.decorators.http import require_POST
 from django.contrib import messages
 import csv
 from io import TextIOWrapper
+import datetime
+from dateutil.relativedelta import relativedelta
+from collections import defaultdict
 
 
 def master(request):
@@ -49,7 +52,6 @@ def master_edit(request, sale_id):
     sale = get_object_or_404(Sale, id=sale_id)
     if request.method == "POST":
         form = SaleForm(request.POST, instance=sale)
-        breakpoint()
         if form.is_valid():
             sale.save()
 
@@ -64,3 +66,59 @@ def master_delete(request, sale_id):
     sale = get_object_or_404(Sale, id=sale_id)
     sale.delete()
     return redirect('sales:master')
+
+
+def statistics(request):
+    sales = Sale.get_all_objets()
+    profit_all = 0
+    for sale in sales:
+        profit_all += sale.profit
+
+    # 集計関数
+    def totalization(sales, date):
+        dic = defaultdict(int)
+        dic['date'] = date
+        dic['num'] = defaultdict(int)
+        dic['profit'] = {}
+        for sale in sales:
+            dic['profit_sum'] += sale.profit
+            dic['num'][sale.item] += sale.num
+            dic['profit'][sale.item] = sale.profit
+
+        detail_li = []
+        for item in dict(dic['num']).keys():
+            p = dic['profit'][item]
+            n = dic['num'][item]
+            detail_li.append(f'{item}:{p}円({n}個)')
+        dic['detail'] = " ".join(detail_li)
+        return dic
+
+    now = datetime.datetime.now()
+    # 月集計
+    month_list = []
+    distance = 3
+    i = 0
+    while(i < distance):
+        month_sales = Sale.get_objets_by_month(i)
+        month_date = now-relativedelta(months=i)
+        month_date = month_date.strftime("%Y年%m月")
+        month_list.append(totalization(month_sales, month_date))
+        i += 1
+
+    # 日集計
+    day_list = []
+    distance = 3
+    i = 0
+    while(i < distance):
+        day_sales = Sale.get_objets_by_day(i)
+        day_date = now-relativedelta(days=i)
+        day_date = day_date.strftime("%Y年%m月%d日")
+        day_list.append(totalization(day_sales, day_date))
+        i += 1
+
+    return render(
+        request, 'sales/statistics.html',
+        {'profit_all': profit_all,
+         'month_list': month_list,
+         'day_list': day_list, }
+    )

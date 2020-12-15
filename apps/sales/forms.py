@@ -2,7 +2,6 @@ from django.forms import ModelForm, SelectDateWidget
 from .models import Sale
 
 
-
 class SaleForm(ModelForm):
     class Meta:
         model = Sale

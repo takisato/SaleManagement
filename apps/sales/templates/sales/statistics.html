@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>販売統計情報</h1>
+<a href="{% url 'home:home' %}">トップ</a>
+＞販売情報管理
+
+<h2>累計</h2>
+{{profit_all}}円
+
+<h2>月別</h2>
+<table class="master_table">
+        <tr>
+            <th>月</th>
+            <th>売上</th>
+            <th>内訳</th>
+        </tr>
+        {% for sale in month_list %}
+        <tr>
+            <td>{{sale.date}}</td>
+            <td>{{sale.profit_sum}}円</td>
+            <td>{{sale.detail}}</td>
+        </tr>
+        {% endfor %}        
+    </table>
+<h2>日別</h2>
+<table class="master_table">
+        <tr>
+            <th>月</th>
+            <th>売上</th>
+            <th>内訳</th>
+        </tr>
+        {% for sale in day_list %}
+        <tr>
+            <td>{{sale.date}}</td>
+            <td>{{sale.profit_sum}}円</td>
+            <td>{{sale.detail}}</td>
+        </tr>
+        {% endfor %}        
+    </table>
+{% endblock %}

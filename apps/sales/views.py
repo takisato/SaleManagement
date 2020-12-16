@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Sale, Item
 from .forms import SaleForm
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import csv
 from io import TextIOWrapper
@@ -10,6 +11,7 @@ from dateutil.relativedelta import relativedelta
 from collections import defaultdict
 
 
+@login_required
 def master(request):
     sales = Sale.get_all_objets('-created_at')
     return render(request, 'sales/master.html', {'sales': sales})
@@ -68,6 +70,7 @@ def master_delete(request, sale_id):
     return redirect('sales:master')
 
 
+@login_required
 def statistics(request):
     sales = Sale.get_all_objets()
     profit_all = 0

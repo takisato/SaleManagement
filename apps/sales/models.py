@@ -5,8 +5,8 @@ import datetime
 
 class Sale(models.Model):
     '''売り上げ'''
-    item = models.ForeignKey(Item, on_delete=models.PROTECT)
-    profit = models.PositiveIntegerField()
+    item = models.ForeignKey(Item, on_delete=models.DO_NOTHING, db_constraint=False)
+    profit = models.PositiveIntegerField(null=True)
     num = models.PositiveIntegerField()
     created_at = models.DateTimeField()
 

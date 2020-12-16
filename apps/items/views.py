@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from .models import Item
 from .forms import ItemForm
 
 
+@login_required
 def item_master(request):
     items = Item.get_all_objects('-updated_at')
     return render(request, 'items/item_master.html', {'items': items})

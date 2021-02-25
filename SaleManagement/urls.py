@@ -23,3 +23,6 @@ urlpatterns = [
     path('items/', include('apps.items.urls')),
     path('sales/', include('apps.sales.urls')),
 ]
+
+from map.views import my_customized_server_error
+handler500 = my_customized_server_error

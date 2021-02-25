@@ -24,5 +24,5 @@ urlpatterns = [
     path('sales/', include('apps.sales.urls')),
 ]
 
-from map.views import my_customized_server_error
+from .settings import my_customized_server_error
 handler500 = my_customized_server_error

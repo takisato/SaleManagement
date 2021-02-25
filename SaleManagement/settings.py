@@ -23,7 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%(zm03zci=+tz5gyhb%4l-f&^v(eaxbfa8eb0-&s71w$ouf^_#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+try:
+    from .local_setting import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.from django.conf import settings(locals())
 
 ALLOWED_HOSTS = []
 

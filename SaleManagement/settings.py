@@ -32,7 +32,7 @@ except ImportError:
 
 if not DEBUG:
     import django_heroku
-    django_heroku.from django.conf import settings(locals())
+    django_heroku.settings(locals())
 
 ALLOWED_HOSTS = []
 

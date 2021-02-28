@@ -21,12 +21,16 @@ def master(request):
 def master_new(request):
     if request.method == "POST":
         form = SaleForm(request.POST)
+        breakpoint
         if form.is_valid():
             sale = form.save(commit=False)
             sale.profit = sale.item.price*sale.num
             sale.save()
+            return redirect('sales:master')
+        else:
+            return render(request, 'sales/master_new.html', {'form': form})
 
-        return redirect('sales:master')
+        
     else:
         form = SaleForm()
     return render(request, 'sales/master_new.html', {'form': form})

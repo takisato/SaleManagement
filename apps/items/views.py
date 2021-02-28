@@ -16,8 +16,7 @@ def item_master_new(request):
         form = ItemForm(request.POST)
         if form.is_valid():
             form.save()
-
-        return redirect('items:item_master')
+            return redirect('items:item_master')
 
     else:
         form = ItemForm()

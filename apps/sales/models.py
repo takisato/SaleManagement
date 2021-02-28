@@ -1,6 +1,7 @@
 from django.db import models
 from apps.items.models import Item
 import datetime
+from dateutil.relativedelta import relativedelta
 
 
 class Sale(models.Model):
@@ -20,11 +21,13 @@ class Sale(models.Model):
     @classmethod
     def get_objets_by_month(cls, distance=1):
         now = datetime.datetime.now()
-        d = now.month-distance
-        return cls.objects.filter(created_at__month=d)
+        m = now-relativedelta(months=distance)
+        month = m.strftime("%m")
+        return cls.objects.filter(created_at__month=month)
 
     @classmethod
     def get_objets_by_day(cls, distance=1):
         now = datetime.datetime.now()
-        d = now.day-distance
-        return cls.objects.filter(created_at__day=d)
+        d = now-relativedelta(day=distance)
+        date = d.strftime("%d")
+        return cls.objects.filter(created_at__day=date)

@@ -12,11 +12,15 @@
     <a href="{% url 'users:login' %}">ログイン</a>
     </button>
     {% endif %}
+    <button>
+    <a href="{% url 'users:user_new' %}">新規登録</a>
+    </button>
 </div>
-    <h3>管理TOP</h3><br>
 
-    <a href="{% url 'items:item_master' %}">商品マスタ管理</a><br>
-    <a href="{% url 'sales:master' %}">販売情報管理</a><br>
-    <a href="{% url 'sales:statistics' %}">販売統計情報</a>
+<h3>管理TOP</h3><br>
+
+<a href="{% url 'items:item_master' %}">商品マスタ管理</a><br>
+<a href="{% url 'sales:master' %}">販売情報管理</a><br>
+<a href="{% url 'sales:statistics' %}">販売統計情報</a>
     
 {% endblock %}

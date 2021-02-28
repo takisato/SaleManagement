@@ -1,0 +1,12 @@
+{% extends 'form.html' %}
+
+{% block content %}
+
+<form action="{% url 'users:user_new' %}" method="post">{% csrf_token %}
+
+{{ form.as_p }}
+<button type="submit" class="btn">登録</button>
+
+</form>
+
+{% endblock %}

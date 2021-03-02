@@ -20,15 +20,15 @@ class Sale(models.Model):
         return cls.objects.all().order_by(order_field)
 
     @classmethod
-    def get_objets_by_month(cls, distance=1):
+    def get_objets_by_month(cls, distance=0):
         now = datetime.datetime.now()
         m = now-relativedelta(months=distance)
         month = m.strftime("%m")
         return cls.objects.filter(created_at__month=month)
 
     @classmethod
-    def get_objets_by_day(cls, distance=1):
+    def get_objets_by_day(cls, distance=0):
         now = datetime.datetime.now()
-        d = now-relativedelta(day=distance)
+        d = now-relativedelta(days=distance)
         date = d.strftime("%d")
         return cls.objects.filter(created_at__day=date)

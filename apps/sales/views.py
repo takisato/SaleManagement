@@ -121,12 +121,12 @@ def statistics(request):
     distance = 3
     i = 0
     while(i < distance):
-        day_sales = Sale.get_objets_by_day(i)
+        day_sales = Sale.get_objets_by_day(distance=i)
         day_date = now-relativedelta(days=i)
         day_date = day_date.strftime("%Y年%m月%d日")
         day_list.append(totalization(day_sales, day_date))
         i += 1
-
+    
     return render(
         request, 'sales/statistics.html',
         {'profit_all': profit_all,

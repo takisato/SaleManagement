@@ -1,15 +1,16 @@
 from django.db import models
 from apps.items.models import Item
 import datetime
+from django.utils import timezone
 from dateutil.relativedelta import relativedelta
 
 
 class Sale(models.Model):
     '''売り上げ'''
     item = models.ForeignKey(Item, on_delete=models.DO_NOTHING, db_constraint=False)
-    profit = models.PositiveIntegerField(null=True)
+    profit = models.PositiveIntegerField(null=True,blank=True)
     num = models.PositiveIntegerField()
-    created_at = models.DateTimeField()
+    created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return str(self.item)

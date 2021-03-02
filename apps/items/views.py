@@ -7,7 +7,7 @@ from .forms import ItemForm
 
 @login_required
 def item_master(request):
-    items = Item.get_all_objects('-updated_at')
+    items = Item.get_all_objects('id')
     return render(request, 'items/item_master.html', {'items': items})
 
 

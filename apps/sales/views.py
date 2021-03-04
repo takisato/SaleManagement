@@ -108,9 +108,9 @@ def statistics(request):
     distance = 3
     i = 0
     while(i < distance):
-        month_sales = Sale.get_objets_by_month(distance=i)
-        # 日付の文字列作成
         month_date = now-relativedelta(months=i)
+        month_sales = Sale.get_objets_by_month(month_date)
+        # 日付の文字列作成
         month_date = month_date.strftime("%Y年%m月")
 
         month_list.append(totalization(month_sales, month_date))
@@ -121,8 +121,8 @@ def statistics(request):
     distance = 3
     i = 0
     while(i < distance):
-        day_sales = Sale.get_objets_by_day(distance=i)
         day_date = now-relativedelta(days=i)
+        day_sales = Sale.get_objets_by_day(day_date)
         day_date = day_date.strftime("%Y年%m月%d日")
         day_list.append(totalization(day_sales, day_date))
         i += 1

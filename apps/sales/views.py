@@ -85,12 +85,12 @@ def statistics(request):
         dic = defaultdict(int)
         dic['date'] = date
         dic['num'] = defaultdict(int)
-        dic['profit'] = {}
+        dic['profit'] = defaultdict(int)
         # 売り上げ計算
         for sale in sales:
             dic['profit_sum'] += sale.profit
             dic['num'][sale.item] += sale.num
-            dic['profit'][sale.item] = sale.profit
+            dic['profit'][sale.item] += sale.profit
 
         # 内訳の記述
         detail_li = []
@@ -110,7 +110,7 @@ def statistics(request):
     while(i < distance):
         month_date = now-relativedelta(months=i)
         month_sales = Sale.get_objets_by_month(month_date)
-        # 日付の文字列作成
+        # 日付を文字列に更新
         month_date = month_date.strftime("%Y年%m月")
 
         month_list.append(totalization(month_sales, month_date))
@@ -123,6 +123,7 @@ def statistics(request):
     while(i < distance):
         day_date = now-relativedelta(days=i)
         day_sales = Sale.get_objets_by_day(day_date)
+        # 日付を文字列に更新
         day_date = day_date.strftime("%Y年%m月%d日")
         day_list.append(totalization(day_sales, day_date))
         i += 1

@@ -7,9 +7,11 @@
 ＞販売情報管理
 
 <h2>累計</h2>
-{{profit_all}}円
+<h1>{{profit_all}}円</h1>
 
 <h2>月別</h2>
+<form action="{% url 'sales:master_new' %}" method="POST">{% csrf_token %}
+</form>
 <table class="master_table">
         <tr>
             <th>月</th>

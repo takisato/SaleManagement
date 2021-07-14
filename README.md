@@ -31,7 +31,7 @@
 
 
 ## Requirement
-ヴァージョンを書く
+バージョンを書く
 
 ## Installation
 

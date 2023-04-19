@@ -31,7 +31,7 @@
 
 
 ## Requirement
-バージョンを書く
+Django
 
 ## Installation
 
